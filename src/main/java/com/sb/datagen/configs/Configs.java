@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Getter
 public class Configs {
     
-    @Value("${data.file.gen.batch.size:10000}")
+    @Value("${data.file.gen.batch.size:1000}")
     private int fileGenBatchSize;
 }
