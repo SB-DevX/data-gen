@@ -14,7 +14,7 @@ pipeline {
                 sh '''
                 echo "Testing...."
                 ls
-                ./gradlew javaTool
+                sudo ./gradlew javaTool
                 '''
             }
         }
