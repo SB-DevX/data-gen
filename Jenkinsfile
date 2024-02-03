@@ -12,7 +12,6 @@ pipeline {
             steps {
                 echo "Building....."
                 sh '''
-                cd data-gen
                 ls -a
                 '''
             }
