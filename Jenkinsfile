@@ -8,13 +8,20 @@ pipeline {
         pollSCM '*/5 * * * *'
     }
     stages {
+        stage('Init') {
+            steps {
+                echo "Init...."
+                sh '''
+                chmod +x gradlew
+                ./gradlew javaTool
+                '''
+            }
+        }
         stage('Build') {
             steps {
                 echo "Building....."
                 sh '''
-                echo "Testing...."
-                ls
-                sudo ./gradlew javaTool
+                ./gradlew build
                 '''
             }
         }
