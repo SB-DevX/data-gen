@@ -36,7 +36,7 @@ public class FileGeneratorService extends GeneratorService<Boolean> {
                 final String dynamicFilePath = createDynamicDirectory(filePath);
                 int noOfTimes = Optional.ofNullable(genRequest.getNoOfTimes()).orElse(1);
                 Pair<Long, Long> batches = calculateBatches(noOfTimes, batchSize);
-                Long noOfBatches = batches.getLeft();
+                long noOfBatches = batches.getLeft();
                 long noOfTimesInLastBatch = batches.getRight();
                 log.info("NoOfBatches :: " + noOfBatches + " noOfTimesInLastBatch " + noOfTimesInLastBatch);
                 try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
@@ -72,7 +72,7 @@ public class FileGeneratorService extends GeneratorService<Boolean> {
     }
     
     private void storeIntoFile(JsonNode data, String filePath) throws IOException {
-        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+        ObjectWriter writer = this.mapper.writer(new DefaultPrettyPrinter());
         String[] filePathPartsByDots = filePath.split("[.]");
         String actualFilePath = filePath.substring(0, filePath.lastIndexOf('.')) + "_" + Thread.currentThread().threadId() + "." + filePathPartsByDots[filePathPartsByDots.length -1];
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(actualFilePath, true)));

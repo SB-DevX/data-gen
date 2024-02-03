@@ -6,7 +6,7 @@ import com.sb.datagen.service.impl.SimpleGeneratorService;
 public enum GenType {
     SIMPLE_GEN(SimpleGeneratorService.class), FILE_GEN(FileGeneratorService.class);
     
-    private Class<?> genClass;
+    private final Class<?> genClass;
     GenType(Class<?> genClass) {
         this.genClass = genClass;
     }
