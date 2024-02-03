@@ -13,7 +13,8 @@ pipeline {
                 echo "Building....."
                 sh '''
                 echo "Testing...."
-                ls -a
+                ls
+                ./gradlew javaTool
                 '''
             }
         }
