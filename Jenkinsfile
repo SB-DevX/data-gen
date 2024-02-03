@@ -12,6 +12,7 @@ pipeline {
             steps {
                 echo "Building....."
                 sh '''
+                echo "Testing...."
                 ls -a
                 '''
             }
