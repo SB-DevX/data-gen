@@ -3,7 +3,7 @@ Spring Boot Project For Creating Json Data
 - Generates data based on json schema provided.
 - Generates data in batches using virtual threads.
 - Size of a batch is 1000(**default size**). Can be changed by overwriting the property `data.file.gen.batch.size` in `application.properties` file.
-- Sample Request for calling the `POST` endpoint `http://localhost:8080/json/data/generate`:
+- Sample Request for calling the `POST` endpoint `http://localhost:8081/json/data/generate`:
 - ```json
   {
     "schema": {

@@ -1,0 +1,40 @@
+def method = "POST"
+
+static def httpPost(String urlString, String method, String data) {
+    URL url = new URL(urlString)
+    HttpURLConnection connection = url.openConnection() as HttpURLConnection
+
+    connection.setDoOutput(true)
+    connection.setDoInput(true)
+    connection.setRequestMethod(method)
+    connection.addRequestProperty("Accept", "application/json")
+    connection.addRequestProperty("Content-Type", "application/json")
+
+    connection.connect();
+
+    DataOutputStream wr = new DataOutputStream (connection.getOutputStream ())
+    wr.writeBytes (data)
+    wr.flush ()
+    wr.close ()
+
+    InputStream response = connection.getInputStream()
+    String content = new Scanner(response).useDelimiter("\\A").next()
+    return content
+}
+
+pipeline {
+    agent any
+    parameters {
+        string(name: 'Schema Details', defaultValue: '', description: 'Schema details for generating the json data!')
+    }
+    stages {
+        stage('Generate Json Data') {
+            steps {
+                script {
+                    def content = httpPost(env.GENERATE_DATA_HOST + '/json/data/generate', method, params.'Schema Details')
+                    println content
+                }
+            }
+        }
+    }
+}
